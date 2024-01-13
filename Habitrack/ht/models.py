@@ -18,13 +18,13 @@ class BinHabit(models.Model):
     def __str__(self):
         return self.name
 
-class BinaryEntry(models.Model):
+class BinEntry(models.Model):
     habit = models.ForeignKey(BinHabit, on_delete=models.CASCADE)
     res = models.BooleanField()
     date = models.DateField()
     
     def __str__(self):
-        return str(self.date) + BinHabit.objects.filter(id=self.habit).name
+        return str(self.habit) + " entry for " + str(self.date)
 
 class NumHabit(models.Model):
     name = models.CharField(max_length=5)
@@ -42,4 +42,4 @@ class NumEntry(models.Model):
 
     
     def __str__(self):
-        return str(self.date) + NumHabit.objects.filter(id=self.habit).name
+        return str(self.habit) + " entry for " + str(self.date)
