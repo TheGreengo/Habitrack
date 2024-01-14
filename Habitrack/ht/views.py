@@ -1,4 +1,6 @@
 from django.http import HttpResponse, JsonResponse
+from django.template import loader
+from .models import BinEntry, BinHabit, NumEntry, NumHabit
 
 # Let's start  this from the top, shall we? When I start  the app, I want it to 
 # generate a list of binary and numeric habits. I think that the easiest way to
@@ -12,7 +14,8 @@ def index(request):
 	return HttpResponse("Hello butt")
 
 def calendar(request, cal_id):
-	return HttpResponse("calendar %s" % cal_id)
+    template = loader.get_template("ht/calendar.html")
+    return HttpResponse(template.render({"thing":cal_id}, request))
 
 def calendarAll(request):
 	return HttpResponse("calendar all")
