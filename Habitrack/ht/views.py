@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 # Let's start  this from the top, shall we? When I start  the app, I want it to 
 # generate a list of binary and numeric habits. I think that the easiest way to
@@ -10,3 +10,15 @@ from django.http import HttpResponse
 
 def index(request):
 	return HttpResponse("Hello butt")
+
+def calendar(request, cal_id):
+	return HttpResponse("calendar %s" % cal_id)
+
+def calendarAll(request):
+	return HttpResponse("calendar all")
+
+def summary(request, sum_id):
+	return HttpResponse("summary %s" % sum_id)
+
+def summaryAll(request):
+	return HttpResponse("summary all")
