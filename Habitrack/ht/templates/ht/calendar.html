@@ -1,6 +1,13 @@
 <h1>This has been rendered</h1>
-{% if thing %}
-    <div>thing: {{thing}}</div>
+{% if months %}
+    {% for month in months%}
+        <h1>{{month.month}}</h1>
+        <div>
+            {% for day in month.days %}
+            <span>day: {{day.day}}</span>
+            {% endfor %}
+        </div>
+    {% endfor %}
 {% else %}
     <div>you are a massive failure and no one will ever love you</div>
 {% endif%}

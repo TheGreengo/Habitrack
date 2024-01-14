@@ -39,7 +39,6 @@ def getCal() -> dict:
 
     for i in range(0,12):
         months[i] = makeCalItem(date(2024,i+1,1))
-    
     return months
 
 def makeCalItem(dat: date) -> dict:
@@ -47,9 +46,9 @@ def makeCalItem(dat: date) -> dict:
     dage = [{ "day": i, "val": None } for i in range(1,leng+1)]
 
     return {
-        "Month": getMonthName(dat.month),
+        "month": getMonthName(dat.month),
         "num": leng,
-        "days": [],
+        "days": dage,
         "offset": dat.weekday()
     }
 
