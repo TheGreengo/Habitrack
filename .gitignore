@@ -3,3 +3,4 @@ migrations
 db.sqlite3
 .admin
 test.ipynb
+__init__.py

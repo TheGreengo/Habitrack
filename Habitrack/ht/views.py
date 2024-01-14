@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import BinEntry, BinHabit, NumEntry, NumHabit
+from datetime import date
 
 # Let's start  this from the top, shall we? When I start  the app, I want it to 
 # generate a list of binary and numeric habits. I think that the easiest way to
@@ -19,7 +20,8 @@ def index(request):
 
 def calendar(request, cal_id):
     template = loader.get_template("ht/calendar.html")
-    return HttpResponse(template.render({"thing":cal_id}, request))
+    months = getCal()
+    return HttpResponse(template.render({ "months": months }, request))
 
 def calendarAll(request):
 	return HttpResponse("calendar all")
@@ -29,3 +31,33 @@ def summary(request, sum_id):
 
 def summaryAll(request):
 	return HttpResponse("summary all")
+
+#! MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============================
+
+def getCal() -> dict:
+    months = [0]*12
+
+    for i in range(0,12):
+        months[i] = makeCalItem(date(2024,i+1,1))
+    
+    return months
+
+def makeCalItem(dat: date) -> dict:
+    leng = getMonthLength(dat.month)
+    dage = [{ "day": i, "val": None } for i in range(1,leng+1)]
+
+    return {
+        "Month": getMonthName(dat.month),
+        "num": leng,
+        "days": [],
+        "offset": dat.weekday()
+    }
+
+def getMonthName(num: int) -> str:
+    names = ["January", "Febraury", "March", "April", "May", "June", "July", 
+             "August", "September", "October", "November", "December"]
+    return names[num - 1]
+
+def getMonthLength(num: int) -> int:
+    names = [31,29,31,30,31,30,31,31,30,31,30,31]
+    return names[num - 1]
