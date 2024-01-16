@@ -2,3 +2,8 @@
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
+
+.hold {
+    display: grid;
+    grid-template-columns: repeat(7, auto);
+}

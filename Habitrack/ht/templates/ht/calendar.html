@@ -5,9 +5,12 @@
 {% if months %}
     {% for month in months%}
         <h1>{{month.month}}</h1>
-        <div>
+        <div class="hold">
+            {% for thing in 0|range:month.offset %}
+            <div></div>
+            {% endfor %}
             {% for day in month.days %}
-            <span>day: {{day.day}}</span>
+            <div>day: {{day.day}}</div>
             {% endfor %}
         </div>
     {% endfor %}

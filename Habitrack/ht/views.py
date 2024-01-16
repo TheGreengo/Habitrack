@@ -32,7 +32,9 @@ def summary(request, sum_id):
 def summaryAll(request):
 	return HttpResponse("summary all")
 
+#! ============================================================================
 #! MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============================
+#! ============================================================================
 
 def getCal() -> dict:
     months = [0]*12
