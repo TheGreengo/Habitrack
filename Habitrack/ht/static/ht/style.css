@@ -3,7 +3,13 @@
     text-align: center;
 }
 
+.out {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
 .hold {
     display: grid;
-    grid-template-columns: repeat(7, auto);
+    grid-template-columns: repeat(7, 75px);
+    margin: 0 auto;
 }

@@ -1,20 +1,26 @@
 {% load static %}
 {% load extras %}
-<link rel="stylesheet" href="{% static 'ht/style.css' %}">
 
-<h1>This has been rendered</h1>
-{% if months %}
-    {% for month in months%}
-        <h1>{{month.month}}</h1>
-        <div class="hold">
-            {% for thing in month.offset|range %}
-            <div></div>
-            {% endfor %}
-            {% for day in month.days %}
-            <div>day: {{day.day}}</div>
-            {% endfor %}
-        </div>
-    {% endfor %}
-{% else %}
-    <div>you are a massive failure and no one will ever love you</div>
-{% endif%}
+<head>    
+    <link rel="stylesheet" href="{% static 'ht/style.css' %}">
+</head>
+<body>
+    <h1>This has been rendered</h1>
+    {% if months %}
+        {% for month in months%}
+            <h1>{{month.month}}</h1>
+            <div class="out"> 
+                <div class="hold">
+                    {% for thing in month.offset|range %}
+                    <div></div>
+                    {% endfor %}
+                    {% for day in month.days %}
+                    <div>day: {{day.day}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div>you are a massive failure and no one will ever love you</div>
+    {% endif%}
+</body>

@@ -55,7 +55,7 @@ def makeCalItem(dat: date) -> dict:
     }
 
 def getMonthName(num: int) -> str:
-    names = ["January", "Febraury", "March", "April", "May", "June", "July", 
+    names = ["January", "February", "March", "April", "May", "June", "July", 
              "August", "September", "October", "November", "December"]
     return names[num - 1]
 
