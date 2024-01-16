@@ -33,7 +33,7 @@ def summaryAll(request):
 	return HttpResponse("summary all")
 
 #! ============================================================================
-#! MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============================
+#! =============== MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============
 #! ============================================================================
 
 def getCal() -> dict:

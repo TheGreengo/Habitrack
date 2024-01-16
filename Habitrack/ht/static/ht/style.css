@@ -8,8 +8,18 @@
     justify-content: center;
     flex-direction: row;
 }
+
 .hold {
     display: grid;
-    grid-template-columns: repeat(7, 75px);
+    grid-template-columns: repeat(7, 85px);
     margin: 0 auto;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+.cal-entry-start {
+    background-color: transparent;
+    border: gray solid 1.5px;
+    border-radius: 7.5px;
+    font-size: large;
 }
