@@ -1,4 +1,5 @@
 {% load static %}
+{% load extras %}
 <link rel="stylesheet" href="{% static 'ht/style.css' %}">
 
 <h1>This has been rendered</h1>
@@ -6,7 +7,7 @@
     {% for month in months%}
         <h1>{{month.month}}</h1>
         <div class="hold">
-            {% for thing in 0|range:month.offset %}
+            {% for thing in month.offset|range %}
             <div></div>
             {% endfor %}
             {% for day in month.days %}
