@@ -18,15 +18,25 @@ from datetime import date
 def index(request):
 	return HttpResponse("Hello butt")
 
+def select(request):
+    template = loader.get_template("ht/select.html")
+    return HttpResponse(template.render({}, request))
+
 def calendarBin(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal()
-    return HttpResponse(template.render({ "months": months, "title": "Habit One" }, request))
+
+    thing = BinEntry.objects
+    return HttpResponse(template.render(
+            { "months": months, "title": "Habit One", "loaded": type(thing) },
+            request))
 
 def calendarNum(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal()
-    return HttpResponse(template.render({ "months": months, "title": "Habit One" }, request))
+    return HttpResponse(template.render(
+            { "months": months, "title": "Habit One" }, 
+            request))
 
 def calendarAll(request):
 	return HttpResponse("calendar all")
