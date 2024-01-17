@@ -3,18 +3,6 @@ from django.template import loader
 from .models import BinEntry, BinHabit, NumEntry, NumHabit
 from datetime import date
 
-# Let's start  this from the top, shall we? When I start  the app, I want it to 
-# generate a list of binary and numeric habits. I think that the easiest way to
-# do  this would simply be to  currently have  it query all binary and  numeric 
-# tasks.  Then I could make a  couple different pages. I  think there will be a 
-# calendar  page, a  summary page, and each of  these will have the  ability to 
-# have  an  individual habit selected  or to select  all habits. This  gives us 
-# routes for /summary/<id>, /summary/all, /calendar/<id>, and /calendar/all.
-# The all calendar just shows how many of the habits were logged that day. 
-# Which brings us to the calendar situation... we need a month class, with a 
-# list of day classes, each day needs to only have a number (the date) and a 
-# value, which can either be a number or a boolean
-
 def index(request):
 	return HttpResponse("Hello butt")
 
@@ -35,7 +23,7 @@ def select(request):
 
 def calendarBin(request, cal_id):
     template = loader.get_template("ht/calendar.html")
-    months = getCal()
+    months = getCal("bin", cal_id)
 
     return HttpResponse(template.render(
             { "months": months, "title": "Habit One" },
@@ -43,14 +31,19 @@ def calendarBin(request, cal_id):
 
 def calendarNum(request, cal_id):
     template = loader.get_template("ht/calendar.html")
-    months = getCal()
+    months = getCal("num", cal_id)
 
     return HttpResponse(template.render(
             { "months": months, "title": "Habit One" }, 
             request))
 
 def calendarAll(request):
-	return HttpResponse("calendar all")
+    template = loader.get_template("ht/calendar.html")
+    months = getCal("cal")
+
+    return HttpResponse(template.render(
+            { "months": months, "title": "All Calendars" }, 
+            request))
 
 def summary(request, sum_id):
 	return HttpResponse("summary %s" % sum_id)
@@ -62,11 +55,32 @@ def summaryAll(request):
 #! =============== MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============
 #! ============================================================================
 
-def getCal() -> dict:
+def getCal(type: str, id: int = 0) -> dict:
     months = [0]*12
 
     for i in range(0,12):
         months[i] = makeCalItem(date(2024,i+1,1))
+
+    ents = []
+    if (type == "bin"):
+        ents = BinEntry.objects.filter(habit=id)
+
+    if (type == "num"):
+        ents = NumEntry.objects.filter(habit=id)
+
+    elif (type == "all"):
+        print()
+        for i in BinEntry.objects.all():
+            ents.append(i)
+        for i in NumEntry.objects.all():
+            ents.append(i)
+
+    for ent in ents:
+        months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
+            = ent.res
+    
+    print(ents)
+
     return months
 
 def makeCalItem(dat: date) -> dict:
@@ -83,6 +97,7 @@ def makeCalItem(dat: date) -> dict:
 def getMonthName(num: int) -> str:
     names = ["January", "February", "March", "April", "May", "June", "July", 
              "August", "September", "October", "November", "December"]
+    
     return names[num - 1]
 
 def getMonthLength(num: int) -> int:
