@@ -1,6 +1,25 @@
 {% load static %}
-
-<h1>This is your mom</h1>
-{% for thing in things %}
-    <button><a href="/calendar/{{thing.type}}/{{thing.id}}">{{thing.name}}</a></button>
-{% endfor %}
+<head>    
+    <link rel="stylesheet" href="{% static 'ht/style.css' %}">
+</head>
+<body>
+    <h1>Select a habit to view the corresponding calendar</h1>
+    {% for thing in things %}
+        <button class="cal-entry-start">
+            <a 
+                href="/calendar/{{thing.type}}/{{thing.id}}"
+                class="select-link" 
+            >
+                {{thing.name}}
+            </a>
+        </button>
+    {% endfor %}
+    <button class="cal-entry-start">
+        <a 
+            href="/calendar/all"
+            class="select-link"
+        >
+            All Habits
+        </a>
+    </button>
+</body>
