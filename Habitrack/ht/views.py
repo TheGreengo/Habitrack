@@ -20,20 +20,31 @@ def index(request):
 
 def select(request):
     template = loader.get_template("ht/select.html")
-    return HttpResponse(template.render({}, request))
+
+    bins = BinHabit.objects.all()
+    nums = NumHabit.objects.all()
+
+    stuff = []
+
+    for bin in bins:
+         stuff.append({"name":bin.name,"id":bin.id})
+    for num in nums:
+         stuff.append({"name":num.name, "id":num.id})
+
+    return HttpResponse(template.render({ "things": stuff }, request))
 
 def calendarBin(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal()
 
-    thing = BinEntry.objects
     return HttpResponse(template.render(
-            { "months": months, "title": "Habit One", "loaded": type(thing) },
+            { "months": months, "title": "Habit One" },
             request))
 
 def calendarNum(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal()
+
     return HttpResponse(template.render(
             { "months": months, "title": "Habit One" }, 
             request))
