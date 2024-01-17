@@ -2,5 +2,5 @@
 
 <h1>This is your mom</h1>
 {% for thing in things %}
-    <a>{{thing.name}}</a>
+    <button><a href="/calendar/{{thing.type}}/{{thing.id}}">{{thing.name}}</a></button>
 {% endfor %}

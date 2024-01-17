@@ -27,9 +27,9 @@ def select(request):
     stuff = []
 
     for bin in bins:
-         stuff.append({"name":bin.name,"id":bin.id})
+         stuff.append({"name":bin.name,"id":bin.id, "type": "bin" })
     for num in nums:
-         stuff.append({"name":num.name, "id":num.id})
+         stuff.append({"name":num.name, "id":num.id, "type": "num"})
 
     return HttpResponse(template.render({ "things": stuff }, request))
 
