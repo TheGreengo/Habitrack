@@ -18,10 +18,15 @@ from datetime import date
 def index(request):
 	return HttpResponse("Hello butt")
 
-def calendar(request, cal_id):
+def calendarBin(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal()
-    return HttpResponse(template.render({ "months": months }, request))
+    return HttpResponse(template.render({ "months": months, "title": "Habit One" }, request))
+
+def calendarNum(request, cal_id):
+    template = loader.get_template("ht/calendar.html")
+    months = getCal()
+    return HttpResponse(template.render({ "months": months, "title": "Habit One" }, request))
 
 def calendarAll(request):
 	return HttpResponse("calendar all")
