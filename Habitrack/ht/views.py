@@ -67,23 +67,29 @@ def getCal(type: str, id: int = 0) -> dict:
         ents = BinEntry.objects.filter(habit=id)
         
         for ent in ents:
-            months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
+            months[ent.date.month-1]["days"][ent.date.day-1]['val']\
                 = "success" if ent.res else "set back"
 
     if (type == "num"):
         ents = NumEntry.objects.filter(habit=id)    
 
         for ent in ents:
-            months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
+            months[ent.date.month-1]["days"][ent.date.day-1]['val']\
                 = ent.res
 
     elif (type == "all"):
+        size = len(BinHabit.objects.all()) + len(NumHabit.objects.all())
         ents = [*BinEntry.objects.all(),*NumEntry.objects.all()]    
 
         for ent in ents:
-            months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
-                = ent.res
-
+            if months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                == None:
+                    months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                    = 1 / size
+            else:
+                 months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                    = months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                    + 1 / size
     
     print(ents)
 
