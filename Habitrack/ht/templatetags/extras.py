@@ -19,3 +19,11 @@ def cut(value):
     if value != "success":
         return 0
     return 2
+    
+# ! I don't think we're going to end up using this for now
+@register.filter(name="nums")
+def cut(goal, value, kind):
+    if (kind == "less" and value > goal) or \
+    (kind == "more" and value < goal):
+        return 0
+    return 2

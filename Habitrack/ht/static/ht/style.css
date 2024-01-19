@@ -24,6 +24,13 @@
     font-size: large;
 }
 
+.cal-entry-late {
+    background-color: #aaaaaa;
+    border: gray solid 1.5px;
+    border-radius: 7.5px;
+    font-size: large;
+}
+
 .cal-entry-done {
     background-color: #B4E296;
     border: gray solid 1.5px;
