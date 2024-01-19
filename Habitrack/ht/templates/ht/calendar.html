@@ -16,7 +16,11 @@
                     <div></div>
                     {% endfor %}
                     {% for day in month.days %}
-                    <button class="cal-entry-start">day: {{day.day}}</button>
+                        {% if day.val != None %}
+                            <button class="cal-entry-done">day: {{day.day}}</button>
+                        {% else %}
+                            <button class="cal-entry-start">day: {{day.day}}</button>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

@@ -39,7 +39,7 @@ def calendarNum(request, cal_id):
 
 def calendarAll(request):
     template = loader.get_template("ht/calendar.html")
-    months = getCal("cal")
+    months = getCal("all")
 
     return HttpResponse(template.render(
             { "months": months, "title": "All Calendars" }, 
@@ -62,6 +62,7 @@ def getCal(type: str, id: int = 0) -> dict:
         months[i] = makeCalItem(date(2024,i+1,1))
 
     ents = []
+
     if (type == "bin"):
         ents = BinEntry.objects.filter(habit=id)
 
@@ -69,15 +70,12 @@ def getCal(type: str, id: int = 0) -> dict:
         ents = NumEntry.objects.filter(habit=id)
 
     elif (type == "all"):
-        print()
-        for i in BinEntry.objects.all():
-            ents.append(i)
-        for i in NumEntry.objects.all():
-            ents.append(i)
+        ents = [*BinEntry.objects.all(),*NumEntry.objects.all()]
 
     for ent in ents:
         months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
             = ent.res
+        print(f"making {ent.date.month}-{ent.date.day} equal to {ent.res}")
     
     print(ents)
 
