@@ -17,8 +17,12 @@
                     {% endfor %}
                     {% for day in month.days %}
                         {% if day.val != None %}
-                            {% if kind != "all" %}
-                                <button class="cal-entry-done">
+                            {% if kind == "bin" %}
+                                <button class="cal-entry-{{day.val|bins}}">
+                                    {{day.val}}
+                                </button>
+                            {% elif kind == "num" %}
+                                <button class="cal-entry-{{day.val|bins}}">
                                     {{day.val}}
                                 </button>
                             {% else %}

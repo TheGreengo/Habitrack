@@ -8,10 +8,14 @@ def cut(value):
 
 @register.filter(name="colors")
 def cut(value):
-    if (value <= 0.25):
+    if (value <= 0.34):
         return 0
-    if (value <= 0.50):
+    if (value <= 0.67):
         return 1
-    if (value <= 0.75):
-        return 2
-    return 3
+    return 2
+
+@register.filter(name="bins")
+def cut(value):
+    if value != "success":
+        return 0
+    return 2
