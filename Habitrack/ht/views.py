@@ -26,7 +26,7 @@ def calendarBin(request, cal_id):
     months = getCal("bin", cal_id)
 
     return HttpResponse(template.render(
-            { "months": months, "title": "Habit One" },
+            { "months": months, "title": "Habit One", "kind": "bin" },
             request))
 
 def calendarNum(request, cal_id):
@@ -34,7 +34,7 @@ def calendarNum(request, cal_id):
     months = getCal("num", cal_id)
 
     return HttpResponse(template.render(
-            { "months": months, "title": "Habit One" }, 
+            { "months": months, "title": "Habit One", "kind": "num" }, 
             request))
 
 def calendarAll(request):
@@ -42,7 +42,7 @@ def calendarAll(request):
     months = getCal("all")
 
     return HttpResponse(template.render(
-            { "months": months, "title": "All Calendars" }, 
+            { "months": months, "title": "All Calendars", "kind": "all" }, 
             request))
 
 def summary(request, sum_id):
@@ -65,17 +65,25 @@ def getCal(type: str, id: int = 0) -> dict:
 
     if (type == "bin"):
         ents = BinEntry.objects.filter(habit=id)
+        
+        for ent in ents:
+            months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
+                = "success" if ent.res else "set back"
 
     if (type == "num"):
-        ents = NumEntry.objects.filter(habit=id)
+        ents = NumEntry.objects.filter(habit=id)    
+
+        for ent in ents:
+            months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
+                = ent.res
 
     elif (type == "all"):
-        ents = [*BinEntry.objects.all(),*NumEntry.objects.all()]
+        ents = [*BinEntry.objects.all(),*NumEntry.objects.all()]    
 
-    for ent in ents:
-        months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
-            = ent.res
-        print(f"making {ent.date.month}-{ent.date.day} equal to {ent.res}")
+        for ent in ents:
+            months[ent.date.month - 1]["days"][ent.date.day - 1]['val']\
+                = ent.res
+
     
     print(ents)
 

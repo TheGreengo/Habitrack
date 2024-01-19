@@ -31,6 +31,34 @@
     font-size: large;
 }
 
+.cal-entry-1 {
+    background-color: #FBD1A2;
+    border: gray solid 1.5px;
+    border-radius: 7.5px;
+    font-size: large;
+}
+
+.cal-entry-2 {
+    background-color: #ECE4B7;
+    border: gray solid 1.5px;
+    border-radius: 7.5px;
+    font-size: large;
+}
+
+.cal-entry-3 {
+    background-color: #B4E296;
+    border: gray solid 1.5px;
+    border-radius: 7.5px;
+    font-size: large;
+}
+
+.cal-entry-4 {
+    background-color: #B4E296;
+    border: gray solid 1.5px;
+    border-radius: 7.5px;
+    font-size: large;
+}
+
 .select-link {
     text-decoration: none;
     color: black;
