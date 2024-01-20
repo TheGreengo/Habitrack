@@ -83,21 +83,30 @@ def getCal(type: str, id: int = 0) -> dict:
 
         for ent in ents:
             if months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                == None:
-                    months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                    = 1 / size
+            == None or \
+            months[ent.date.month-1]["days"][ent.date.day-1]['val'] == "late":
+                months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                = 1 / size
             else:
-                 months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                    = months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                    + 1 / size
-    
-    print(ents)
+                months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                = months[ent.date.month-1]["days"][ent.date.day-1]['val']\
+                + 1 / size
 
     return months
 
 def makeCalItem(dat: date) -> dict:
     leng = getMonthLength(dat.month)
-    dage = [{ "day": i, "val": None } for i in range(1,leng+1)]
+    curr = date.today()
+    dage = []
+    
+    if dat.month < curr.month:
+        dage = [{ "day": i, "val": "late" } for i in range(1,leng+1)]
+    elif dat.month == curr.month:
+        one = [{ "day": i, "val": "late" } for i in range(1,curr.day)]
+        two = [{ "day": i, "val": None } for i in range(curr.day,leng+1)]
+        dage = [*one, *two] 
+    else:
+        dage = [{ "day": i, "val": None } for i in range(1,leng+1)]
 
     return {
         "month": getMonthName(dat.month),

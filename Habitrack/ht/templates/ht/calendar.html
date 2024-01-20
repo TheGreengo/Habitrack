@@ -16,7 +16,7 @@
                     <div></div>
                     {% endfor %}
                     {% for day in month.days %}
-                        {% if day.val != None %}
+                        {% if day.val != None and day.val != "late" %}
                             {% if kind == "bin" %}
                                 <button class="cal-entry-{{day.val|bins}}">
                                     {{day.val}}
@@ -31,9 +31,15 @@
                                 </button>
                             {% endif %}
                         {% else %}
-                            <button class="cal-entry-start">
-                                day: {{day.day}}
-                            </button>
+                            {% if day.val == "late" %}
+                                <button class="cal-entry-late">
+                                    {{day.day}}
+                                </button>
+                            {% else %}
+                                <button class="cal-entry-start">
+                                    {{day.day}}
+                                </button>
+                            {% endif %}
                         {% endif %}
                     {% endfor %}
                 </div>
