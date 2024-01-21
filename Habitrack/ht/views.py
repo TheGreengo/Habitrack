@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import BinEntry, BinHabit, NumEntry, NumHabit
+from .utils import getCal
 from datetime import date
 
 def index(request):
@@ -46,15 +47,25 @@ def calendarAll(request):
             request))
 
 #* okeydokey artichokey, we need to think this thing through for a second
-#* we need (duplicates for binary and numerical) 
+#* we need (duplicates for binary and numerical) to have a link in the 
+#* calendar page that opens up a update entry page for a certain date
+#* we then need a for that page to have a form to update or create a new
+#* entry for that date. Once that is submitted, it then needs to redirect
+#* to the appropriate calendar page
 
-def entryBin(request, dat):
+def binSubmit():
+    print("Hello")
+
+def numSubmit():
+    print("Hello")
+
+def updateBin(request, dat):
     curr = date(dat)
 
     ent = BinEntry()
     calendarBin()
 
-def entryNum(request, dat):
+def updateNum(request, dat):
     print("Hello world")
     calendarNum()
 
@@ -67,73 +78,3 @@ def summaryAll(request):
 #! ============================================================================
 #! =============== MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============
 #! ============================================================================
-
-def getCal(type: str, id: int = 0) -> dict:
-    months = [0]*12
-
-    for i in range(0,12):
-        months[i] = makeCalItem(date(2024,i+1,1))
-
-    ents = []
-
-    if (type == "bin"):
-        ents = BinEntry.objects.filter(habit=id)
-        
-        for ent in ents:
-            months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                = "success" if ent.res else "set back"
-
-    if (type == "num"):
-        ents = NumEntry.objects.filter(habit=id)    
-
-        for ent in ents:
-            months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                = ent.res
-
-    elif (type == "all"):
-        size = len(BinHabit.objects.all()) + len(NumHabit.objects.all())
-        ents = [*BinEntry.objects.all(),*NumEntry.objects.all()]    
-
-        for ent in ents:
-            if months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-            == None or \
-            months[ent.date.month-1]["days"][ent.date.day-1]['val'] == "late":
-                months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                = 1 / size
-            else:
-                months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                = months[ent.date.month-1]["days"][ent.date.day-1]['val']\
-                + 1 / size
-
-    return months
-
-def makeCalItem(dat: date) -> dict:
-    leng = getMonthLength(dat.month)
-    curr = date.today()
-    dage = []
-    
-    if dat.month < curr.month:
-        dage = [{ "day": i, "val": "late" } for i in range(1,leng+1)]
-    elif dat.month == curr.month:
-        one = [{ "day": i, "val": "late" } for i in range(1,curr.day)]
-        two = [{ "day": i, "val": None } for i in range(curr.day,leng+1)]
-        dage = [*one, *two] 
-    else:
-        dage = [{ "day": i, "val": None } for i in range(1,leng+1)]
-
-    return {
-        "month": getMonthName(dat.month),
-        "num": leng,
-        "days": dage,
-        "offset": dat.weekday()
-    }
-
-def getMonthName(num: int) -> str:
-    names = ["January", "February", "March", "April", "May", "June", "July", 
-             "August", "September", "October", "November", "December"]
-    
-    return names[num - 1]
-
-def getMonthLength(num: int) -> int:
-    names = [31,29,31,30,31,30,31,31,30,31,30,31]
-    return names[num - 1]

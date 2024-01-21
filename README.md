@@ -12,3 +12,9 @@ I want to make a habit tracker for my 2024 annual goals.
   - summary stats
   - comparison to goal
 - maybe have a dashboard
+- fix timezones thing problem
+
+# Tolearns:
+- fancy url forms
+- actual substantial requests 
+- blocks in templates if that's a thing
