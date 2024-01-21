@@ -45,6 +45,19 @@ def calendarAll(request):
             { "months": months, "title": "All Calendars", "kind": "all" }, 
             request))
 
+#* okeydokey artichokey, we need to think this thing through for a second
+#* we need (duplicates for binary and numerical) 
+
+def entryBin(request, dat):
+    curr = date(dat)
+
+    ent = BinEntry()
+    calendarBin()
+
+def entryNum(request, dat):
+    print("Hello world")
+    calendarNum()
+
 def summary(request, sum_id):
 	return HttpResponse("summary %s" % sum_id)
 
