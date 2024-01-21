@@ -18,19 +18,37 @@
                         {% if day.val != None and day.val != "late" %}
                             {% if kind == "bin" %}
                                 <button class="cal-entry-{{day.val|bins}}">
-                                    {{day.val}}
+                                    <a class="select-link">
+                                        {{day.val}}
+                                    </a>
                                 </button>
                             {% elif kind == "num" %}
                                 <button class="cal-entry-2">
-                                    {{day.val}}
+                                    <a class="select-link">
+                                        {{day.val}}
+                                    </a>
                                 </button>
                             {% else %}
                                 <button class="cal-entry-{{day.val|colors}}">
-                                    what
+                                    <a class="select-link">
+                                        what
+                                    </a>
                                 </button>
                             {% endif %}
                         {% else %}
-                            {% if day.val == "late" %}
+                            {% if day.val == "late" and kind != "all" %}
+                                <button class="cal-entry-late">
+                                    <a class="select-link" href="/{{kind}}/update">
+                                        {{day.day}}
+                                    </a>
+                                </button>
+                            {% elif kind != "all" %}
+                                <button class="cal-entry-start">
+                                    <a class="select-link" href="/{{kind}}/update">
+                                        {{day.day}}
+                                    </a>
+                                </button>
+                            {% elif day.val == "late" %}
                                 <button class="cal-entry-late">
                                     {{day.day}}
                                 </button>
