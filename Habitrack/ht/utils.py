@@ -55,17 +55,12 @@ def makeCalItem(dat: date) -> dict:
         dage = [{ "day": i, "val": None } for i in range(1,leng+1)]
 
     return {
-        "month": getMonthName(dat.month),
+        "month": dat.month,
         "num": leng,
         "days": dage,
         "offset": dat.weekday()
     }
 
-def getMonthName(num: int) -> str:
-    names = ["January", "February", "March", "April", "May", "June", "July", 
-             "August", "September", "October", "November", "December"]
-    
-    return names[num - 1]
 
 def getMonthLength(num: int) -> int:
     names = [31,29,31,30,31,30,31,31,30,31,30,31]

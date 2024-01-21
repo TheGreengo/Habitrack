@@ -60,21 +60,21 @@ def numSubmit():
     print("Hello")
 
 def updateBin(request, dat):
-    curr = date(dat)
+    template = loader.get_template("ht/update_bin.html")
 
-    ent = BinEntry()
-    calendarBin()
+    return HttpResponse(template.render(
+            {}, 
+            request))
 
 def updateNum(request, dat):
-    print("Hello world")
-    calendarNum()
+    template = loader.get_template("ht/update_num.html")
+
+    return HttpResponse(template.render(
+            {}, 
+            request))
 
 def summary(request, sum_id):
 	return HttpResponse("summary %s" % sum_id)
 
 def summaryAll(request):
 	return HttpResponse("summary all")
-
-#! ============================================================================
-#! =============== MAKE THIS A MODULE AND NOT JUST CHILLIN HERE ===============
-#! ============================================================================

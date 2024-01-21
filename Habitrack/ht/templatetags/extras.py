@@ -19,6 +19,16 @@ def cut(value):
     if value != "success":
         return 0
     return 2
+
+@register.filter(name="dates")
+def cut(month, day):
+    return (month*100)+day
+
+@register.filter(name="months")
+def cut(ind):
+    names = ["January", "February", "March", "April", "May", "June", "July", 
+        "August", "September", "October", "November", "December"]
+    return names[ind - 1]
     
 # ! I don't think we're going to end up using this for now
 @register.filter(name="nums")

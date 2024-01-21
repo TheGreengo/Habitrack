@@ -8,7 +8,7 @@
     <h1>Calendar for: {{title}}</h1>
     {% if months %}
         {% for month in months%}
-            <h2>{{month.month}}</h2>
+            <h2>{{month.month|months}}</h2>
             <div class="out"> 
                 <div class="hold">
                     {% for thing in month.offset|range %}
@@ -38,13 +38,15 @@
                         {% else %}
                             {% if day.val == "late" and kind != "all" %}
                                 <button class="cal-entry-late">
-                                    <a class="select-link" href="/{{kind}}/update">
+                                    <a class="select-link" 
+                                    href="/{{kind}}/update/{{month.month|dates:day.day}}">
                                         {{day.day}}
                                     </a>
                                 </button>
                             {% elif kind != "all" %}
                                 <button class="cal-entry-start">
-                                    <a class="select-link" href="/{{kind}}/update">
+                                    <a class="select-link" 
+                                    href="/{{kind}}/update/{{month.month|dates:day.day}}">
                                         {{day.day}}
                                     </a>
                                 </button>
