@@ -46,9 +46,7 @@ def calendarAll(request):
             { "months": months, "title": "All Calendars", "kind": "all" }, 
             request))
 
-#* okeydokey artichokey, we need to think this thing through for a second
-#* we need (duplicates for binary and numerical) to have a link in the 
-#* calendar page that opens up a update entry page for a certain date
+#* link opens up a update entry page for a certain date
 #* we then need a for that page to have a form to update or create a new
 #* entry for that date. Once that is submitted, it then needs to redirect
 #* to the appropriate calendar page

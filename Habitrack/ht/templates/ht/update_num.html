@@ -7,9 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">    
         <link rel="stylesheet" href="{% static 'ht/style.css' %}">
     </head>
+    <!-- So here we need to have 
+    - a form
+    - a title that has the habit an  -->
     <body>
         <h1>{{}} entry for {{}}</h1>
-        <form action="{% url 'ht:updateBin'  %}" method="post">
+        <form action="{% url 'ht:updateBin' %}" method="post">
 
         </form>
     </body>
