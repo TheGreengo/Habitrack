@@ -27,7 +27,7 @@ def calendarBin(request, cal_id):
     months = getCal("bin", cal_id)
 
     return HttpResponse(template.render(
-            { "months": months, "title": "Habit One", "kind": "bin" },
+            { "months": months, "title": "Habit One", "kind": "bin", "id": cal_id },
             request))
 
 def calendarNum(request, cal_id):
@@ -35,7 +35,7 @@ def calendarNum(request, cal_id):
     months = getCal("num", cal_id)
 
     return HttpResponse(template.render(
-            { "months": months, "title": "Habit One", "kind": "num" }, 
+            { "months": months, "title": "Habit One", "kind": "num", "id": cal_id }, 
             request))
 
 def calendarAll(request):
@@ -57,19 +57,21 @@ def binSubmit():
 def numSubmit():
     print("Hello")
 
-def updateBin(request, dat):
-    template = loader.get_template("ht/update_bin.html")
+def updateBin(request, cal_id, dat):
+    # template = loader.get_template("ht/update_bin.html")
 
-    return HttpResponse(template.render(
-            {}, 
-            request))
+    # return HttpResponse(template.render(
+    #         {}, 
+    #         request))
+    return HttpResponse(f"Update {dat // 100}-{dat % 100} for binary {cal_id}")
 
-def updateNum(request, dat):
-    template = loader.get_template("ht/update_num.html")
+def updateNum(request, cal_id, dat):
+    # template = loader.get_template("ht/update_num.html")
 
-    return HttpResponse(template.render(
-            {}, 
-            request))
+    # return HttpResponse(template.render(
+    #         {}, 
+    #         request))
+    return HttpResponse(f"Update {dat // 100}-{dat % 100} for numerical {cal_id}")
 
 def summary(request, sum_id):
 	return HttpResponse("summary %s" % sum_id)

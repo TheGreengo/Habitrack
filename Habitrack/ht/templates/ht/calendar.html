@@ -39,14 +39,14 @@
                             {% if day.val == "late" and kind != "all" %}
                                 <button class="cal-entry-late">
                                     <a class="select-link" 
-                                    href="/update/{{kind}}/{{month.month|dates:day.day}}">
+                                    href="/update/{{id}}/{{kind}}/{{month.month|dates:day.day}}">
                                         {{day.day}}
                                     </a>
                                 </button>
                             {% elif kind != "all" %}
                                 <button class="cal-entry-start">
                                     <a class="select-link" 
-                                    href="/update/{{kind}}/{{month.month|dates:day.day}}">
+                                    href="/update/{{id}}/{{kind}}/{{month.month|dates:day.day}}">
                                         {{day.day}}
                                     </a>
                                 </button>
