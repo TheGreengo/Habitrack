@@ -63,3 +63,12 @@
     text-decoration: none;
     color: black;
 }
+
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-chunk {
+    margin: 10px;
+}

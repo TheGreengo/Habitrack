@@ -51,18 +51,18 @@ def calendarAll(request):
 #* entry for that date. Once that is submitted, it then needs to redirect
 #* to the appropriate calendar page
 
-def binSubmit():
-    print("Hello")
+def submitBin():
+    HttpResponse("hehe")
 
-def numSubmit():
-    print("Hello")
+def submitNum():
+    HttpResponse("hehe")
 
 def updateBin(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
     day = date(2024, dat // 100, dat % 100)
 
     return HttpResponse(template.render(
-        {"date": day, "kind": "bin", "id": cal_id }, 
+        {"date": day, "kind": "bin", "id": cal_id, "dat":dat }, 
         request))
 
 
@@ -71,7 +71,7 @@ def updateNum(request, cal_id, dat):
     day = date(2024, dat // 100, dat % 100)
 
     return HttpResponse(template.render(
-        {"date": day, "kind": "num", "id": cal_id }, 
+        {"date": day, "kind": "num", "id": cal_id, "dat":dat }, 
         request))
 
 def summary(request, sum_id):

@@ -9,24 +9,29 @@
     </head>
     <body>
         <div>
-            We want:
-            <ul>
-                <li>Date</li>
-                <li>habit</li>
-                <li>value</li>
-            </ul>
+            Welcome to the page for the thing {{dat}}
         </div>
-        <form>
-            <label>Date</label>
-            <input/>
-            <label>Val</label>
-            {% if kind == "bin" %}
-                <input/>
-            {% else %}
-                <input/>
-            {% endif %}
-            <label>Submit</label>
-            <input/>
+        <form action="/submit/{{id}}/{{kind}}/{{dat}}/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <div class="update-form">
+                <div class="update-chunk">
+                    <label>Date</label>
+                    <input type="date"/>
+                </div>
+                <div class="update-chunk">
+                    <label>Val</label>
+                    {% if kind == "bin" %}
+                        <input type="checkbox"/>
+                    {% else %}
+                        <input type="number"/>
+                    {% endif %}
+                </div>
+                <div class="update-chunk">
+                    <label>Submit</label>
+                    <input type="submit"/>
+                </div>
+            </div>
         </form>
     </body>
 </html>
