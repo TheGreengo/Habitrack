@@ -1,8 +1,10 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import BinEntry, BinHabit, NumEntry, NumHabit
+from django.views.decorators.csrf import csrf_protect
 from .utils import getCal
 from datetime import date
+from django.shortcuts import redirect
 
 def index(request):
 	return HttpResponse("Hello butt")
@@ -51,12 +53,17 @@ def calendarAll(request):
 #* entry for that date. Once that is submitted, it then needs to redirect
 #* to the appropriate calendar page
 
-def submitBin():
-    HttpResponse("hehe")
+@csrf_protect
+def submitBin(request, cal_id, dat):
+    response = redirect('/select')
+    return response
 
-def submitNum():
-    HttpResponse("hehe")
+@csrf_protect
+def submitNum(request, cal_id, dat):
+    response = redirect('/select')
+    return response
 
+@csrf_protect
 def updateBin(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
     day = date(2024, dat // 100, dat % 100)
@@ -65,7 +72,7 @@ def updateBin(request, cal_id, dat):
         {"date": day, "kind": "bin", "id": cal_id, "dat":dat }, 
         request))
 
-
+@csrf_protect
 def updateNum(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
     day = date(2024, dat // 100, dat % 100)

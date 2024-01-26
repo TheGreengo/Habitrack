@@ -13,7 +13,6 @@
         </div>
         <form action="/submit/{{id}}/{{kind}}/{{dat}}/" method="post">
             {% csrf_token %}
-            {{ form }}
             <div class="update-form">
                 <div class="update-chunk">
                     <label>Date</label>
