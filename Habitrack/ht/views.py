@@ -84,7 +84,8 @@ def submitNum(request, cal_id):
 def updateBin(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
     mon = str((dat // 100)) if (dat // 100) >= 10 else "0" + str((dat // 100))
-    day = f"2024-{mon}-{dat % 100}"
+    dag = str((dat % 100)) if (dat % 100) >= 10 else "0" + str((dat % 100))
+    day = f"2024-{mon}-{dag}"
 
     return HttpResponse(template.render(
         {"date": day, "kind": "bin", "id": cal_id, "dat":dat }, 
@@ -94,7 +95,8 @@ def updateBin(request, cal_id, dat):
 def updateNum(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
     mon = str((dat // 100)) if (dat // 100) >= 10 else "0" + str((dat // 100))
-    day = f"2024-{mon}-{dat % 100}"
+    dag = str((dat % 100)) if (dat % 100) >= 10 else "0" + str((dat % 100))
+    day = f"2024-{mon}-{dag}"
 
     return HttpResponse(template.render(
         {"date": day, "kind": "num", "id": cal_id, "dat":dat }, 

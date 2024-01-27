@@ -9,13 +9,8 @@ I want to make a habit tracker for my 2024 annual goals.
   - summary stats
   - comparison to goal
 - maybe have a dashboard
-
-# Long term fixes:
 - date timezone issue
-- title for calendar pages
 - look of update page
-- back arrow to select page
-- fix day formatting
 - make update update and not just add a new one
 - add habits
 
