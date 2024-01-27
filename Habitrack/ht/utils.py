@@ -61,7 +61,12 @@ def makeCalItem(dat: date) -> dict:
         "offset": dat.weekday()
     }
 
-
 def getMonthLength(num: int) -> int:
     names = [31,29,31,30,31,30,31,31,30,31,30,31]
     return names[num - 1]
+
+def getNumDate(dat: str) -> list:
+    day = int(dat[8:])
+    month = int(dat[5:7])
+    year = int(dat[0:4])
+    return [year, month, day]

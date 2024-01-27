@@ -3,7 +3,6 @@ I want to make a habit tracker for my 2024 annual goals.
 
 # Todos:
 - get selector either embedded or to have a back arrow to get there
-- make that create a new entry
 - make entries editable
 - create summary pages
   - graphs
@@ -17,6 +16,7 @@ I want to make a habit tracker for my 2024 annual goals.
 - look of update page
 - back arrow to select page
 - fix day formatting
+- make update update and not just add a new one
 
 # Tolearns:
 - actual substantial requests 

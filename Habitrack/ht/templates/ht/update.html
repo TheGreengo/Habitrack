@@ -11,7 +11,7 @@
         <div>
             Welcome to the page for the thing {{dat}}
         </div>
-        <form action="/submit/{{id}}/{{kind}}/{{dat}}/" method="post">
+        <form action="/submit/{{id}}/{{kind}}/" method="post">
             {% csrf_token %}
             <div class="update-form">
                 <div class="update-chunk">

@@ -1,9 +1,8 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import BinEntry, BinHabit, NumEntry, NumHabit
-from .forms import UpdateNumForm, UpdateBinForm
 from django.views.decorators.csrf import csrf_protect
-from .utils import getCal
+from .utils import getCal, getNumDate
 from datetime import date
 from django.shortcuts import redirect
 
@@ -53,24 +52,31 @@ def calendarAll(request):
 #* - updating the objects in the DB
 
 @csrf_protect
-def submitBin(request, cal_id, dat):
+def submitBin(request, cal_id):
 
-    # habit = BinHabit.objects.filter(id = cal_id)
-    # dat = date()
-    # ent = BinEntry(habit=habit, res=, date=dat)
-    form = UpdateBinForm(request.POST)
-    print(form["date"].value())
-    print(form["res"].value())
+    val = not (request.POST.get("res") == None)
+    print(val)
+    habit = BinHabit.objects.filter(id = cal_id)
+    dat = date(*getNumDate(request.POST.get("date")))
+    ent = BinEntry(habit=habit[0], 
+                   res=val, 
+                   date=dat)
+    ent.save()
 
     response = redirect(f'/calendar/bin/{cal_id}/')
     return response
 
 @csrf_protect
-def submitNum(request, cal_id, dat):
+def submitNum(request, cal_id):
 
-    form = UpdateNumForm(request.POST)
-    print(form["date"].value())
-    print(form["res"].value())
+    habit = NumHabit.objects.filter(id = cal_id)
+
+    dat = date(*getNumDate(request.POST.get("date")))
+    num = float(request.POST.get("res"))
+    ent = NumEntry(habit=habit[0], 
+                   res=num, 
+                   date=dat)
+    ent.save()
 
     response = redirect(f'/calendar/num/{cal_id}/')
     return response
