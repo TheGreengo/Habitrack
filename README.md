@@ -2,9 +2,7 @@
 I want to make a habit tracker for my 2024 annual goals.
 
 # Todos:
-- see if there's a way to embed templates within each other
 - get selector either embedded or to have a back arrow to get there
-- make some sort of fill outable thing if you click on a particular day you can log that days info
 - make that create a new entry
 - make entries editable
 - create summary pages
@@ -12,9 +10,14 @@ I want to make a habit tracker for my 2024 annual goals.
   - summary stats
   - comparison to goal
 - maybe have a dashboard
-- fix timezones thing problem
+
+# Long term fixes:
+- date timezone issue
+- title for calendar pages
+- look of update page
+- back arrow to select page
+- fix day formatting
 
 # Tolearns:
-- fancy url forms
 - actual substantial requests 
 - blocks in templates if that's a thing

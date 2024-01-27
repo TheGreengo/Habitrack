@@ -16,14 +16,14 @@
             <div class="update-form">
                 <div class="update-chunk">
                     <label>Date</label>
-                    <input value="{{date}}" type="date"/>
+                    <input id="date" name="date" value="{{date}}" type="date"/>
                 </div>
                 <div class="update-chunk">
                     <label>Val</label>
                     {% if kind == "bin" %}
-                        <input type="checkbox"/>
+                        <input id="res" name="res" type="checkbox"/>
                     {% else %}
-                        <input type="number"/>
+                        <input id="res" name="res" step="0.1" type="number"/>
                     {% endif %}
                 </div>
                 <div class="update-chunk">

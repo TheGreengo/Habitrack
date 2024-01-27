@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import BinEntry, BinHabit, NumEntry, NumHabit
+from .forms import UpdateNumForm, UpdateBinForm
 from django.views.decorators.csrf import csrf_protect
 from .utils import getCal
 from datetime import date
@@ -54,11 +55,22 @@ def calendarAll(request):
 @csrf_protect
 def submitBin(request, cal_id, dat):
 
+    # habit = BinHabit.objects.filter(id = cal_id)
+    # dat = date()
+    # ent = BinEntry(habit=habit, res=, date=dat)
+    form = UpdateBinForm(request.POST)
+    print(form["date"].value())
+    print(form["res"].value())
+
     response = redirect(f'/calendar/bin/{cal_id}/')
     return response
 
 @csrf_protect
 def submitNum(request, cal_id, dat):
+
+    form = UpdateNumForm(request.POST)
+    print(form["date"].value())
+    print(form["res"].value())
 
     response = redirect(f'/calendar/num/{cal_id}/')
     return response
