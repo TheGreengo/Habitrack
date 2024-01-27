@@ -48,10 +48,8 @@ def calendarAll(request):
             { "months": months, "title": "All Calendars", "kind": "all" }, 
             request))
 
-#* link opens up a update entry page for a certain date
-#* we then need a for that page to have a form to update or create a new
-#* entry for that date. Once that is submitted, it then needs to redirect
-#* to the appropriate calendar page
+#* what we have left to do is to add in:
+#* - updating the objects in the DB
 
 @csrf_protect
 def submitBin(request, cal_id, dat):
@@ -68,7 +66,8 @@ def submitNum(request, cal_id, dat):
 @csrf_protect
 def updateBin(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
-    day = date(2024, dat // 100, dat % 100)
+    mon = str((dat // 100)) if (dat // 100) >= 10 else "0" + str((dat // 100))
+    day = f"2024-{mon}-{dat % 100}"
 
     return HttpResponse(template.render(
         {"date": day, "kind": "bin", "id": cal_id, "dat":dat }, 
@@ -77,7 +76,8 @@ def updateBin(request, cal_id, dat):
 @csrf_protect
 def updateNum(request, cal_id, dat):
     template = loader.get_template("ht/update.html")
-    day = date(2024, dat // 100, dat % 100)
+    mon = str((dat // 100)) if (dat // 100) >= 10 else "0" + str((dat // 100))
+    day = f"2024-{mon}-{dat % 100}"
 
     return HttpResponse(template.render(
         {"date": day, "kind": "num", "id": cal_id, "dat":dat }, 
