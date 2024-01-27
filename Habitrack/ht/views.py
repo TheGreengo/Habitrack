@@ -55,12 +55,14 @@ def calendarAll(request):
 
 @csrf_protect
 def submitBin(request, cal_id, dat):
-    response = redirect('/select')
+
+    response = redirect(f'/calendar/bin/{cal_id}/')
     return response
 
 @csrf_protect
 def submitNum(request, cal_id, dat):
-    response = redirect('/select')
+
+    response = redirect(f'/calendar/num/{cal_id}/')
     return response
 
 @csrf_protect
