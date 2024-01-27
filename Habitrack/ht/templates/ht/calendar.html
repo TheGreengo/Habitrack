@@ -5,7 +5,17 @@
     <link rel="stylesheet" href="{% static 'ht/style.css' %}">
 </head>
 <body>
-    <h1>Calendar for: {{title}}</h1>
+    <div class="hor">
+        <div class="vercent">
+            <a class="select-link" href="/select">&lt; Select</a>
+        </div>
+        <div>
+            <h1>Calendar for: {{title}}</h1>
+        </div>
+        <div>
+            
+        </div>
+    </div>
     {% if months %}
         {% for month in months%}
             <h2>{{month.month|months}}</h2>

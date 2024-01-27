@@ -72,3 +72,10 @@
 .update-chunk {
     margin: 10px;
 }
+
+.hor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}

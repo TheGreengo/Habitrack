@@ -27,17 +27,19 @@ def select(request):
 def calendarBin(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal("bin", cal_id)
+    name = BinHabit.objects.filter(id=cal_id)[0].name
 
     return HttpResponse(template.render(
-            { "months": months, "title": "Habit One", "kind": "bin", "id": cal_id },
+            { "months": months, "title": name, "kind": "bin", "id": cal_id },
             request))
 
 def calendarNum(request, cal_id):
     template = loader.get_template("ht/calendar.html")
     months = getCal("num", cal_id)
+    name = NumHabit.objects.filter(id=cal_id)[0].name
 
     return HttpResponse(template.render(
-        { "months": months, "title": "Habit One", "kind": "num", "id": cal_id }, 
+        { "months": months, "title": name, "kind": "num", "id": cal_id }, 
         request))
 
 def calendarAll(request):
@@ -47,9 +49,6 @@ def calendarAll(request):
     return HttpResponse(template.render(
             { "months": months, "title": "All Calendars", "kind": "all" }, 
             request))
-
-#* what we have left to do is to add in:
-#* - updating the objects in the DB
 
 @csrf_protect
 def submitBin(request, cal_id):

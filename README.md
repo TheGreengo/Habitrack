@@ -17,6 +17,7 @@ I want to make a habit tracker for my 2024 annual goals.
 - back arrow to select page
 - fix day formatting
 - make update update and not just add a new one
+- add habits
 
 # Tolearns:
 - actual substantial requests 
