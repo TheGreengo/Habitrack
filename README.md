@@ -1,9 +1,8 @@
 # Habitrack
-I want to make a habit tracker for my 2024 annual goals.
+I want to make a habit tracker for my 2024 annual goals. These goals are (ironically) going to start in February, because I will be using January to make this goal tracker.
 
 # Todos:
 - get selector either embedded or to have a back arrow to get there
-- make entries editable
 - create summary pages
   - graphs
   - summary stats
@@ -13,7 +12,3 @@ I want to make a habit tracker for my 2024 annual goals.
 - look of update page
 - make update update and not just add a new one
 - add habits
-
-# Tolearns:
-- actual substantial requests 
-- blocks in templates if that's a thing
