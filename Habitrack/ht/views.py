@@ -106,21 +106,34 @@ def summary(request, sum_id):
 	return HttpResponse("summary %s" % sum_id)
 
 def summaryAll(request):
-	template = loader.get_template("ht/summary.html")
+    template = loader.get_template("ht/summary.html")
+
+    bins = BinHabit.objects.all()
+    nums = NumHabit.objects.all()
+
+    things = []
+
+    for i in bins:
+        ents = BinEntry.objects.filter()
+        thing = {
+            "type": "bin",
+            "name": i.name,
+            "goal": i.goal
+        }
+        things.append(thing)
+        
         
     # basically we want to make a list of habit objects, where each habit object 
     # has the name of the habit (easy), the goal of the habit (easy), the 
     # current rate of success/status, a list of the values, the days needed for 
     # to meet the goal, days in, days left, 
     # Since this 
-	thing = {
+    thing = {
         "vals": [0,1,0,1],
-        "name": "hello",
         "curr": 0.7,
-        "goal": 0.9,
         "days in": 3,
         "days to go": 6,
         "days needed": 4,
         "other": "thing"
     }
-	return HttpResponse(template.render({ "things": "thang" }, request))
+    return HttpResponse(template.render({ "things": "thang" }, request))

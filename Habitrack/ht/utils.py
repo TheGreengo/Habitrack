@@ -70,3 +70,9 @@ def getNumDate(dat: str) -> list:
     month = int(dat[5:7])
     year = int(dat[0:4])
     return [year, month, day]
+
+def getBinInfo(hab: BinHabit) -> dict:
+    print("crazy")
+
+def getNumInfo(hab: NumHabit) -> dict:
+    print("crazy")
