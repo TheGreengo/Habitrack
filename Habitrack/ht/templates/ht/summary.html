@@ -5,5 +5,9 @@
 <body>
     Just a normal summary of things. What I'd like to do is loop through the 
     habits, print the goal, and the current status.
-    
+    {% for hab in habs %}
+        <div class="summary-tile">
+            <h1>{{hab.name}}</h1>
+        </div>
+    {% endfor %}
 </body>
