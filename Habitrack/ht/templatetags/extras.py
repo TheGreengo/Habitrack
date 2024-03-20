@@ -4,7 +4,6 @@ register = template.Library()
 
 @register.filter(name="doub")
 def doub(value):
-    print(float(value))
     return f"{value:.2f}"
 
 @register.filter(name="range")
