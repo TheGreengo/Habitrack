@@ -79,3 +79,7 @@
     justify-content: space-between;
     align-items:center;
 }
+
+.summary-tile{
+    border: solid black 1px;
+}

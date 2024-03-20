@@ -99,6 +99,20 @@ def getBinInfo(hab: BinHabit) -> dict:
 def getNumInfo(hab: NumHabit) -> dict:
     res = {}
     res["name"] = hab.name
+    res["goal"] = hab.goal
 
     ents = NumEntry.objects.filter(habit=hab.id)
+    res["num"] = len(ents)
+
+    vals = [i.res for i in ents]
+    res["vals"] = vals
+
+    tot = 0
+    for i in vals:
+        tot += (1 if i else 0)
+    res["curr"] = tot / len(ents)
+
+    res["days"] = (hab.stop - hab.start).days
+    res["left"] = res["days"] - res["num"]
+    
     return res

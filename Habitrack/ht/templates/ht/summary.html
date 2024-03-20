@@ -1,4 +1,5 @@
 {% load static %}
+{% load extras %}
 <head>    
     <link rel="stylesheet" href="{% static 'ht/style.css' %}">
 </head>
@@ -8,6 +9,13 @@
     {% for hab in habs %}
         <div class="summary-tile">
             <h1>{{hab.name}}</h1>
+            <div>Goal: {{hab.goal}}</div>
+            <div>Num: {{hab.num}}</div>
+            <div>Curr: {{hab.curr|doub}}</div>
+            <div>Left: {{hab.left}}</div>
+            <!-- {% for val in hab.vals %}
+            <div>val: {{val}}</div>
+            {% endfor %} -->
         </div>
     {% endfor %}
 </body>
