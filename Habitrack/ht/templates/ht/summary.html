@@ -15,6 +15,15 @@
             <div>Curr: {{hab.curr|doub}}</div>
             <div>Left: {{hab.left}}</div>
             <div>Days: {{hab.days}}</div>
+            {% if hab.kind == "bin" %}
+                {% if hab.goal_met and hab.type %}
+                <div>You're on track to meet your goal!</div>
+                {% elif hab.is_hopeless%}
+                <div>So sorry! There isn't enough time left for you to meet your goal.</div>
+                {% else %}
+                <div>You need to have {{hab.needed}} successes in order to be on track to meet your goal.</div>
+                {% endif %}
+            {% endif %}
             <!-- {% for val in hab.vals %}
             <div>val: {{val}}</div>
             {% endfor %} -->

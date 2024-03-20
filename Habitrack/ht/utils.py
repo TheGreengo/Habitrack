@@ -73,6 +73,7 @@ def getNumDate(dat: str) -> list:
 
 def getBinInfo(hab: BinHabit) -> dict:
     res = {}
+    res["kind"] = "bin"
     res["name"] = hab.name
     res["goal"] = hab.goal
 
@@ -85,19 +86,38 @@ def getBinInfo(hab: BinHabit) -> dict:
     tot = 0
     for i in vals:
         tot += (1 if i else 0)
-    res["curr"] = tot / len(ents)
+    res["curr"] = tot / res["num"]
 
     res["days"] = (hab.stop - hab.start).days
     res["left"] = res["days"] - res["num"]
 
     # needed
-    # is_needed
-    # left
+    res["goal_met"] = res["curr"] >= res["goal"]
 
+    if not res["goal_met"]:
+        ach = tot
+        print("ach: %d" % ach)
+        days = res["num"]
+        print("days: %d" % days)
+        its = 0
+        print("its: %d" % its)
+        while (ach / days) < res["goal"] and its < res["left"]:
+            ach += 1
+            print("ach: %d" % ach)
+            days += 1
+            print("days: %d" % days)
+            its += 1
+            print("its: %d" % its)
+        res["hopeless"] = (ach / days) < res["goal"]
+        if not res["hopeless"]:
+            res["needed"] = its
+            print(its)
+        
     return res
 
 def getNumInfo(hab: NumHabit) -> dict:
     res = {}
+    res["kind"] = "num"
     res["name"] = hab.name
     res["goal"] = hab.goal
 
@@ -114,5 +134,5 @@ def getNumInfo(hab: NumHabit) -> dict:
 
     res["days"] = (hab.stop - hab.start).days
     res["left"] = res["days"] - res["num"]
-    
+
     return res
