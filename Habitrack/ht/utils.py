@@ -96,22 +96,15 @@ def getBinInfo(hab: BinHabit) -> dict:
 
     if not res["goal_met"]:
         ach = tot
-        print("ach: %d" % ach)
         days = res["num"]
-        print("days: %d" % days)
         its = 0
-        print("its: %d" % its)
         while (ach / days) < res["goal"] and its < res["left"]:
             ach += 1
-            print("ach: %d" % ach)
             days += 1
-            print("days: %d" % days)
             its += 1
-            print("its: %d" % its)
         res["hopeless"] = (ach / days) < res["goal"]
         if not res["hopeless"]:
             res["needed"] = its
-            print(its)
         
     return res
 

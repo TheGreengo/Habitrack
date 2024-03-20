@@ -4,6 +4,26 @@
     <link rel="stylesheet" href="{% static 'ht/style.css' %}">
 </head>
 <body>
+    <nav>
+        <menu>
+            <button class="cal-entry-start">
+                <a 
+                    href="/select"
+                    class="select-link"
+                >
+                    Calendar Selection
+                </a>
+            </button>
+            <button class="cal-entry-start">
+                <a 
+                    href="/summary/all"
+                    class="select-link"
+                >
+                    Summmaries
+                </a>
+            </button>
+        </menu>
+    </nav>
     Just a normal summary of things. What I'd like to do is loop through the 
     habits, print the goal, and the current status.
     <div class="sums-hold">

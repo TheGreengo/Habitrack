@@ -7,7 +7,8 @@ from datetime import date
 from django.shortcuts import redirect
 
 def index(request):
-	return HttpResponse("Hello butt")
+    template = loader.get_template("ht/index.html")
+    return HttpResponse(template.render({},request))
 
 def select(request):
     template = loader.get_template("ht/select.html")
