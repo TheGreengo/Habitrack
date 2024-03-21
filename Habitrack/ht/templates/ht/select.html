@@ -3,26 +3,7 @@
     <link rel="stylesheet" href="{% static 'ht/style.css' %}">
 </head>
 <body>
-    <nav>
-        <menu>
-            <button class="cal-entry-start">
-                <a 
-                    href="/select"
-                    class="select-link"
-                >
-                    Calendar Selection
-                </a>
-            </button>
-            <button class="cal-entry-start">
-                <a 
-                    href="/summary/all"
-                    class="select-link"
-                >
-                    Summmaries
-                </a>
-            </button>
-        </menu>
-    </nav>
+    {% include "menu.html" %}
     <h1>Select a habit to view the corresponding calendar</h1>
     {% for thing in things %}
         <button class="cal-entry-start">

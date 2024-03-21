@@ -4,26 +4,7 @@
     <link rel="stylesheet" href="{% static 'ht/style.css' %}">
 </head>
 <body>
-    <nav>
-        <menu>
-            <button class="cal-entry-start">
-                <a 
-                    href="/select"
-                    class="select-link"
-                >
-                    Calendar Selection
-                </a>
-            </button>
-            <button class="cal-entry-start">
-                <a 
-                    href="/summary/all"
-                    class="select-link"
-                >
-                    Summmaries
-                </a>
-            </button>
-        </menu>
-    </nav>
+    {% include "menu.html" %}
     Just a normal summary of things. What I'd like to do is loop through the 
     habits, print the goal, and the current status.
     <div class="sums-hold">
@@ -31,10 +12,12 @@
         <div class="summary-tile">
             <h1>{{hab.name}}</h1>
             <div>Goal: {{hab.goal}}</div>
-            <div>Num: {{hab.num}}</div>
-            <div>Curr: {{hab.curr|doub}}</div>
-            <div>Left: {{hab.left}}</div>
-            <div>Days: {{hab.days}}</div>
+            <br>
+            <div>
+                You are {{hab.num}} days in, and currently have a success rate of {{hab.curr|doub}}
+                with {{hab.left}} days left.
+            </div>
+            <br>
             {% if hab.kind == "bin" %}
                 {% if hab.goal_met and hab.type %}
                 <div>You're on track to meet your goal!</div>
@@ -44,9 +27,11 @@
                 <div>You need to have {{hab.needed}} successes in order to be on track to meet your goal.</div>
                 {% endif %}
             {% endif %}
-            <!-- {% for val in hab.vals %}
-            <div>val: {{val}}</div>
-            {% endfor %} -->
+            <!-- {% if hab.kind == "num" %}
+            {% if %}
+            {%%}
+            {%%}
+            {% endif %} -->
         </div>
     {% endfor %}
     </div>

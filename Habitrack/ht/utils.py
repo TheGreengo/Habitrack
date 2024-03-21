@@ -120,6 +120,7 @@ def getNumInfo(hab: NumHabit) -> dict:
     vals = [i.res for i in ents]
     res["vals"] = vals
 
+    # for here we instead need to get the latest entry
     tot = 0
     for i in vals:
         tot += (1 if i else 0)
