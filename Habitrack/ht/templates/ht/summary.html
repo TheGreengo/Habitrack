@@ -27,11 +27,15 @@
                 <div>You need to have {{hab.needed}} successes in order to be on track to meet your goal.</div>
                 {% endif %}
             {% endif %}
-            <!-- {% if hab.kind == "num" %}
-            {% if %}
-            {%%}
-            {%%}
-            {% endif %} -->
+            {% if hab.kind == "num" %}
+                {% if hab.curr >= hab.goal %}
+                <div>Currently you're at: {{hab.curr}}, which is just {{hab | diff}} above your goal</div>
+                {% elif hab.curr <= hab.goal %}
+                <div>Currently you're at: {{hab.curr}}, which is just {{hab | diff}} below your goal</div>
+                {% else %}
+                <div>You met your goal exactly! Currently you're at: {{hab.curr}}</div>
+                {% endif %}
+            {% endif %}
         </div>
     {% endfor %}
     </div>

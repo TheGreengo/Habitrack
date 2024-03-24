@@ -2,6 +2,10 @@ from django import template
 
 register = template.Library()
 
+@register.filter(name="diff")
+def doub(thing):
+    return abs(thing["curr"] - thing["goal"])
+
 @register.filter(name="doub")
 def doub(value):
     return f"{value:.2f}"
