@@ -4,7 +4,8 @@ register = template.Library()
 
 @register.filter(name="diff")
 def doub(thing):
-    return abs(thing["curr"] - thing["goal"])
+    value = abs(thing["curr"] - thing["goal"])
+    return f"{value:.2f}"
 
 @register.filter(name="doub")
 def doub(value):
