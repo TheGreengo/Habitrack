@@ -24,6 +24,15 @@
                 {% else %}
                 <div>You need to have {{hab.needed}} successes in order to be on track to meet your goal.</div>
                 {% endif %}
+                <br>
+                <button class="cal-entry-start">
+                    <a 
+                        href="/summary/bin/4"
+                        class="select-link"
+                    >
+                        Go to summary page
+                    </a>
+                </button>
             {% endif %}
             {% if hab.kind == "num" %}
                 {% if hab.curr >= hab.goal %}
@@ -33,6 +42,15 @@
                 {% else %}
                 <div>You met your goal exactly! Currently you're at: {{hab.curr}}</div>
                 {% endif %}
+                <br>
+                <button class="cal-entry-start">
+                    <a 
+                        href="/summary/num/4"
+                        class="select-link"
+                    >
+                        Go to summary page
+                    </a>
+                </button>
             {% endif %}
         </div>
     {% endfor %}

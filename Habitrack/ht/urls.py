@@ -12,6 +12,7 @@ urlpatterns = [
     path("submit/<int:cal_id>/num/", views.submitNum, name="submitNum"),
     path("submit/<int:cal_id>/bin/", views.submitBin, name="submitBin"),
     path("calendar/all/", views.calendarAll, name="calendars"),
-    path("summary/<int:sum_id>/", views.summary, name="summary"),
+    path("summary/bin/<int:sum_id>/", views.summaryBin, name="summaryBin"),
+    path("summary/num/<int:sum_id>/", views.summaryNum, name="summaryNum"),
     path("summary/all/", views.summaryAll, name="summarys"),
 ]

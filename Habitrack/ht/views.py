@@ -103,7 +103,10 @@ def updateNum(request, cal_id, dat):
         {"date": day, "kind": "num", "id": cal_id, "dat":dat }, 
         request))
 
-def summary(request, sum_id):
+def summaryBin(request, sum_id):
+	return HttpResponse("summary %s" % sum_id)
+
+def summaryNum(request, sum_id):
 	return HttpResponse("summary %s" % sum_id)
 
 def summaryAll(request):
