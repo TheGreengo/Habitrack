@@ -104,10 +104,12 @@ def updateNum(request, cal_id, dat):
         request))
 
 def summaryBin(request, sum_id):
-	return HttpResponse("summary %s" % sum_id)
+    template = loader.get_template("ht/sum_bin.html")
+    return HttpResponse(template.render({}, request))
 
 def summaryNum(request, sum_id):
-	return HttpResponse("summary %s" % sum_id)
+    template = loader.get_template("ht/sum_num.html")
+    return HttpResponse(template.render({}, request))
 
 def summaryAll(request):
     template = loader.get_template("ht/summary.html")
